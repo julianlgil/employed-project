@@ -62,7 +62,7 @@
                     <generatePackage>com.example.consumingwebservice.wsdl</generatePackage>
                     <schemas>
                         <schema>
-                            <url>http://localhost:8080/ws/employed.wsdl</url>
+                            <url>src/main/resources/static/employed.wsdl.xml</url>
                         </schema>
                     </schemas>
                 </configuration>

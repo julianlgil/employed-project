@@ -1,0 +1,61 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.testprueba.com/employed" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.testprueba.com/employed" targetNamespace="http://www.testprueba.com/employed">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.testprueba.com/employed">
+            <xs:element name="addEmployedRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Employed" type="tns:employed"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addEmployedResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Status" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="employed">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="surname" type="xs:string"/>
+                    <xs:element name="documentType" type="xs:string"/>
+                    <xs:element name="documentNumber" type="xs:string"/>
+                    <xs:element name="birthdate" type="xs:date"/>
+                    <xs:element name="hiringDate" type="xs:date"/>
+                    <xs:element name="position" type="xs:string"/>
+                    <xs:element name="pay" type="xs:double"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="addEmployedResponse">
+        <wsdl:part element="tns:addEmployedResponse" name="addEmployedResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="addEmployedRequest">
+        <wsdl:part element="tns:addEmployedRequest" name="addEmployedRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="EmployedPort">
+        <wsdl:operation name="addEmployed">
+            <wsdl:input message="tns:addEmployedRequest" name="addEmployedRequest"> </wsdl:input>
+            <wsdl:output message="tns:addEmployedResponse" name="addEmployedResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EmployedPortSoap11" type="tns:EmployedPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="addEmployed">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="addEmployedRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="addEmployedResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="EmployedPortService">
+        <wsdl:port binding="tns:EmployedPortSoap11" name="EmployedPortSoap11">
+            <soap:address location="http://localhost:8080/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
